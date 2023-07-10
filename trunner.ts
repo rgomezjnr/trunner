@@ -13,7 +13,8 @@ console.log();
 
 const args = ['wdio', 'run'];
 
-args.push(process.argv[2]);
+for (let i = 2; i < process.argv.length; i++)
+  args.push(process.argv[i]);
 
 console.log('Executing the following command...');
   console.log('npx');
