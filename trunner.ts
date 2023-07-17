@@ -21,6 +21,12 @@ console.log(args);
 let wdioCapabilities = {};
 
 // Convert trunner args to WebdriverIO capabilities
+if (args.app !== undefined) {
+  wdioCapabilities = {
+    'appium:app': args.app
+  }
+}
+
 if (args.incognito) {
   wdioCapabilities = {
     'goog:chromeOptions': {
