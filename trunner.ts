@@ -1,28 +1,47 @@
 import { exec } from 'child_process';
 import { execSync } from 'child_process';
 import { spawn } from 'child_process';
+import { ArgumentParser } from 'argparse';
+import fs from 'fs';
+import capabilities from './capabilities.json';
 
-console.log('arg count:');
-console.log(process.argv.length);
-console.log();
+// Setup argparser
+const parser = new ArgumentParser({
+  description: 'trunner'
+});
 
-console.log('argv:');
-for (let i = 0; i < process.argv.length; i++)
-  console.log(process.argv[i]);
-console.log();
+// parser.add_argument('-v', '--version', { action: 'version', version });
+parser.add_argument('-a', '--app', { type: 'string', help: 'App under test, .ipa or .apk' });
+parser.add_argument('-l', '--loglevel', { type: 'string', help: 'loglevel' });
+parser.add_argument('-i', '--incognito', { action: 'store_true', help: 'incognito mode' });
 
-const args = ['wdio', 'run'];
+const args = parser.parse_args();
+console.log(args);
 
-for (let i = 2; i < process.argv.length; i++)
-  args.push(process.argv[i]);
+let wdioCapabilities = {};
 
-console.log('Executing the following command...');
-  console.log('npx');
-for (let i = 0; i < args.length; i++)
-  console.log(args[i]);
-console.log();
+// Convert trunner args to WebdriverIO capabilities
+if (args.incognito) {
+  wdioCapabilities = {
+    'goog:chromeOptions': {
+      args: ['incognito']
+    }
+  }
+}
 
-const command = spawn('npx', args);
+// Write final capabilities to capabilities.json
+let finalCapabilties = {
+  ...capabilities,
+  ...wdioCapabilities
+}
+
+console.log(JSON.stringify(finalCapabilties));
+
+fs.writeFileSync('./capabilities.json', JSON.stringify(finalCapabilties));
+
+// Execute test(s)
+const defaultArgs = ['wdio', 'run', 'wdio.conf.ts'];
+const command = spawn('npx', defaultArgs);
 
 command.stdout.on('data', (data) => {
   console.log(`stdout: ${data}`);

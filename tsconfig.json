@@ -9,6 +9,8 @@
             "@wdio/jasmine-framework",
             "@wdio/appium-service"
         ],
-        "target": "es2022"
+        "target": "es2022",
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
     }
 }

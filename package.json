@@ -13,5 +13,8 @@
   },
   "scripts": {
     "wdio": "wdio run ./wdio.conf.ts"
+  },
+  "dependencies": {
+    "argparse": "^2.0.1"
   }
 }
