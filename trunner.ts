@@ -14,11 +14,11 @@ const parser = new ArgumentParser({
 
 // parser.add_argument('-v', '--version', { action: 'version', version });
 parser.add_argument('-a', '--app', { type: 'string', help: 'App under test, .ipa or .apk' });
-parser.add_argument('-l', '--logLevel', { type: 'string', help: 'logLevel' });
+parser.add_argument('-l', '--logLevel', { type: 'string', help: 'level of logging verbosity [choices: "trace", "debug", "info", "warn", "error", "silent"]' });
 parser.add_argument('-i', '--incognito', { action: 'store_true', help: 'incognito mode' });
 parser.add_argument('-f', '--fullreset', { type: 'string', help: 'fullReset' });
 parser.add_argument('-n', '--noreset', { type: 'string', help: 'noReset' });
-parser.add_argument('-s', '--spec', { type: 'string', help: 'spec' });
+parser.add_argument('-s', '--spec', { type: 'string', help: 'run only a certain spec file - overrides specs piped from stdin [array]' });
 
 const args = parser.parse_args();
 console.log(args);
