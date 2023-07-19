@@ -16,6 +16,8 @@ const parser = new ArgumentParser({
 parser.add_argument('-a', '--app', { type: 'string', help: 'App under test, .ipa or .apk' });
 parser.add_argument('-l', '--loglevel', { type: 'string', help: 'loglevel' });
 parser.add_argument('-i', '--incognito', { action: 'store_true', help: 'incognito mode' });
+parser.add_argument('-f', '--fullreset', { type: 'string', help: 'fullReset' });
+parser.add_argument('-n', '--noreset', { type: 'string', help: 'noReset' });
 
 const args = parser.parse_args();
 console.log(args);
@@ -31,6 +33,18 @@ if (args.loglevel !== undefined) {
 if (args.app !== undefined) {
   wdioCapabilities = {
     'appium:app': args.app
+  }
+}
+
+if (args.fullreset !== undefined) {
+  wdioCapabilities = {
+    'appium:fullreset': args.fullreset
+  }
+}
+
+if (args.noreset !== undefined) {
+  wdioCapabilities = {
+    'appium:noreset': args.noreset
   }
 }
 
