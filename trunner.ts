@@ -19,6 +19,7 @@ parser.add_argument('-i', '--incognito', { action: 'store_true', help: 'incognit
 parser.add_argument('-f', '--fullreset', { type: 'string', help: 'fullReset' });
 parser.add_argument('-n', '--noreset', { type: 'string', help: 'noReset' });
 parser.add_argument('-s', '--spec', { type: 'string', help: 'run only a certain spec file - overrides specs piped from stdin [array]' });
+parser.add_argument('-su', '--suite', { type: 'string', help: 'overwrites the specs attribute and runs the defined suite [array]' });
 
 const args = parser.parse_args();
 console.log(args);
@@ -33,6 +34,11 @@ if (args.logLevel !== undefined) {
 if (args.spec !== undefined) {
   defaultArgs.push('--spec')
   defaultArgs.push(args.spec)
+}
+
+if (args.suite !== undefined) {
+  defaultArgs.push('--suite')
+  defaultArgs.push(args.suite)
 }
 
 // Convert trunner args to WebdriverIO capabilities
