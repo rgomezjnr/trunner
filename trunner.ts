@@ -5,6 +5,8 @@ import { ArgumentParser } from 'argparse';
 import fs from 'fs';
 import capabilities from './capabilities.json';
 
+const defaultArgs = ['wdio', 'run', 'wdio.conf.ts'];
+
 // Setup argparser
 const parser = new ArgumentParser({
   description: 'trunner'
@@ -19,6 +21,11 @@ const args = parser.parse_args();
 console.log(args);
 
 let wdioCapabilities = {};
+
+if (args.loglevel !== undefined) {
+  defaultArgs.push('--loglevel')
+  defaultArgs.push(args.loglevel)
+}
 
 // Convert trunner args to WebdriverIO capabilities
 if (args.app !== undefined) {
@@ -46,7 +53,12 @@ console.log(JSON.stringify(finalCapabilties));
 fs.writeFileSync('./capabilities.json', JSON.stringify(finalCapabilties));
 
 // Execute test(s)
-const defaultArgs = ['wdio', 'run', 'wdio.conf.ts'];
+console.log('Executing the following command...');
+  console.log('npx');
+for (let i = 0; i < defaultArgs.length; i++)
+  console.log(defaultArgs[i]);
+console.log();
+
 const command = spawn('npx', defaultArgs);
 
 command.stdout.on('data', (data) => {
