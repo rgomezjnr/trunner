@@ -14,7 +14,7 @@ const parser = new ArgumentParser({
 
 // parser.add_argument('-v', '--version', { action: 'version', version });
 parser.add_argument('-a', '--app', { type: 'string', help: 'App under test, .ipa or .apk' });
-parser.add_argument('-l', '--loglevel', { type: 'string', help: 'loglevel' });
+parser.add_argument('-l', '--logLevel', { type: 'string', help: 'logLevel' });
 parser.add_argument('-i', '--incognito', { action: 'store_true', help: 'incognito mode' });
 parser.add_argument('-f', '--fullreset', { type: 'string', help: 'fullReset' });
 parser.add_argument('-n', '--noreset', { type: 'string', help: 'noReset' });
@@ -24,9 +24,9 @@ console.log(args);
 
 let wdioCapabilities = {};
 
-if (args.loglevel !== undefined) {
-  defaultArgs.push('--loglevel')
-  defaultArgs.push(args.loglevel)
+if (args.logLevel !== undefined) {
+  defaultArgs.push('--logLevel')
+  defaultArgs.push(args.logLevel)
 }
 
 // Convert trunner args to WebdriverIO capabilities
