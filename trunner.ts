@@ -78,13 +78,17 @@ console.log(JSON.stringify(finalCapabilties));
 
 fs.writeFileSync('./capabilities.json', JSON.stringify(finalCapabilties));
 
-// Execute test(s)
-console.log('Executing the following command...');
-  console.log('npx');
+let defaultArgsString = '';
+
 for (let i = 0; i < defaultArgs.length; i++)
-  console.log(defaultArgs[i]);
+  defaultArgsString += `${defaultArgs[i]} `;
+
+console.log('Executing the following command...');
+console.log(`npx ${defaultArgsString}`);
+
 console.log();
 
+// Execute test(s)
 const command = spawn('npx', defaultArgs);
 
 command.stdout.on('data', (data) => {
