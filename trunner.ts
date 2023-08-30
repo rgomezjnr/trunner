@@ -1,5 +1,3 @@
-import { exec } from 'child_process';
-import { execSync } from 'child_process';
 import { spawn } from 'child_process';
 import { ArgumentParser } from 'argparse';
 import fs from 'fs';
@@ -89,16 +87,4 @@ console.log(`npx ${defaultArgsString}`);
 console.log();
 
 // Execute test(s)
-const command = spawn('npx', defaultArgs);
-
-command.stdout.on('data', (data) => {
-  console.log(`stdout: ${data}`);
-});
-
-command.stderr.on('data', (data) => {
-  console.error(`stderr: ${data}`);
-});
-
-command.on('close', (code) => {
-  console.log(`child process exited with code ${code}`);
-});
+spawn('npx', defaultArgs, {stdio: "inherit"});
