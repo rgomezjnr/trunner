@@ -25,6 +25,7 @@ parser.add_argument('-an', '--automationName', { type: 'string', help: 'The name
 parser.add_argument('-d', '--deviceName', { type: 'string', help: 'The name of a particular device to automate [string]' });
 parser.add_argument('-pv', '--platformVersion', { type: 'string', help: 'The version of a platform, e.g., for iOS, 16.0 [string]' });
 parser.add_argument('-nct', '--newCommandTimeout', { type: 'int', help: 'The number of seconds the Appium server should wait for clients to send commands before deciding that the client has gone away and the session should shut down [number]' });
+parser.add_argument('-u', '--udid', { type: 'string', help: 'Unique device identifier of the connected physical device [string]' });
 
 const args = parser.parse_args();
 console.log(args);
@@ -110,6 +111,12 @@ if (args.platformVersion !== undefined) {
 if (args.newCommandTimeout !== undefined) {
   wdioCapabilities = {
     'appium:newCommandTimeout': args.newCommandTimeout
+  }
+}
+
+if (args.udid !== undefined) {
+  wdioCapabilities = {
+    'appium:udid': args.udid
   }
 }
 
