@@ -19,6 +19,7 @@ parser.add_argument('-n', '--noreset', { type: 'string', help: 'noReset' });
 parser.add_argument('-s', '--spec', { type: 'string', help: 'run only a certain spec file - overrides specs piped from stdin [array]' });
 parser.add_argument('-su', '--suite', { type: 'string', help: 'overwrites the specs attribute and runs the defined suite [array]' });
 parser.add_argument('-b', '--bail', { type: 'int', help: 'stop test runner after specific amount of tests have failed [number]' });
+parser.add_argument('-w', '--waitforTimeout', { type: 'int', help: 'timeout for all waitForXXX commands [number]' });
 
 const args = parser.parse_args();
 console.log(args);
@@ -43,6 +44,11 @@ if (args.suite !== undefined) {
 if (args.bail !== undefined) {
   defaultArgs.push('--bail')
   defaultArgs.push(args.bail)
+}
+
+if (args.waitforTimeout !== undefined) {
+  defaultArgs.push('--waitforTimeout')
+  defaultArgs.push(args.waitforTimeout)
 }
 
 // Convert trunner args to WebdriverIO capabilities
