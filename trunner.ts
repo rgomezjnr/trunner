@@ -23,6 +23,7 @@ parser.add_argument('-w', '--waitforTimeout', { type: 'int', help: 'timeout for 
 parser.add_argument('-p', '--platformName', { type: 'string', help: 'The type of platform hosting the app or browser [string]' });
 parser.add_argument('-an', '--automationName', { type: 'string', help: 'The name of the Appium driver to use [string]' });
 parser.add_argument('-d', '--deviceName', { type: 'string', help: 'The name of a particular device to automate [string]' });
+parser.add_argument('-pv', '--platformVersion', { type: 'string', help: 'The version of a platform, e.g., for iOS, 16.0 [string]' });
 
 const args = parser.parse_args();
 console.log(args);
@@ -96,6 +97,12 @@ if (args.automationName !== undefined) {
 if (args.deviceName !== undefined) {
   wdioCapabilities = {
     'appium:deviceName': args.deviceName
+  }
+}
+
+if (args.platformVersion !== undefined) {
+  wdioCapabilities = {
+    'appium:platformVersion': args.platformVersion
   }
 }
 
