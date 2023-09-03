@@ -20,6 +20,7 @@ parser.add_argument('-s', '--spec', { type: 'string', help: 'run only a certain 
 parser.add_argument('-su', '--suite', { type: 'string', help: 'overwrites the specs attribute and runs the defined suite [array]' });
 parser.add_argument('-b', '--bail', { type: 'int', help: 'stop test runner after specific amount of tests have failed [number]' });
 parser.add_argument('-w', '--waitforTimeout', { type: 'int', help: 'timeout for all waitForXXX commands [number]' });
+parser.add_argument('-p', '--platformName', { type: 'string', help: 'The type of platform hosting the app or browser [string]' });
 
 const args = parser.parse_args();
 console.log(args);
@@ -75,6 +76,12 @@ if (args.incognito) {
     'goog:chromeOptions': {
       args: ['incognito']
     }
+  }
+}
+
+if (args.platformName !== undefined) {
+  wdioCapabilities = {
+    'appium:platformName': args.platformName
   }
 }
 
