@@ -1,4 +1,7 @@
 import type { Options } from '@wdio/types'
+import { Capabilities } from '@wdio/types'
+import caps from './capabilities.json';
+
 export const config: Options.Testrunner = {
     //
     // ====================
@@ -60,14 +63,7 @@ export const config: Options.Testrunner = {
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://saucelabs.com/platform/platform-configurator
     //
-    capabilities: [{
-        // capabilities for local Appium web tests on an Android Emulator
-        platformName: 'Android',
-        browserName: 'Chrome',
-        'appium:deviceName': 'Android GoogleAPI Emulator',
-        'appium:platformVersion': '12.0',
-        'appium:automationName': 'UiAutomator2'
-    }],
+    capabilities: [caps as Capabilities.Capabilities],
 
     //
     // ===================
