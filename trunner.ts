@@ -10,7 +10,7 @@ const parser = new ArgumentParser({
   description: 'Test runner for WebdriverIO for quickly executing tests with different capabilities on the command-line'
 });
 
-// parser.add_argument('-v', '--version', { action: 'version', version });
+parser.add_argument('-v', '--version', { action: 'version', version:'%(prog)s 0.1.0' });
 parser.add_argument('-a', '--app', { type: 'string', help: 'App under test, .ipa or .apk' });
 parser.add_argument('-l', '--logLevel', { type: 'string', help: 'level of logging verbosity [choices: "trace", "debug", "info", "warn", "error", "silent"]' });
 parser.add_argument('-i', '--incognito', { action: 'store_true', help: 'incognito mode' });
