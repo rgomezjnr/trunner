@@ -7,7 +7,7 @@ const defaultArgs = ['wdio', 'run', 'wdio.conf.ts'];
 
 // Setup argparser
 const parser = new ArgumentParser({
-  description: 'trunner'
+  description: 'Test runner for WebdriverIO for quickly executing tests with different capabilities on the command-line'
 });
 
 // parser.add_argument('-v', '--version', { action: 'version', version });
