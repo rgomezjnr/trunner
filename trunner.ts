@@ -14,7 +14,7 @@ parser.add_argument('-v', '--version', { action: 'version', version:'%(prog)s 0.
 parser.add_argument('-a', '--app', { type: 'string', help: 'App under test, .ipa or .apk' });
 parser.add_argument('-l', '--logLevel', { type: 'string', help: 'level of logging verbosity [choices: "trace", "debug", "info", "warn", "error", "silent"]' });
 parser.add_argument('-i', '--incognito', { action: 'store_true', help: 'incognito mode' });
-parser.add_argument('-f', '--fullreset', { type: 'string', help: 'fullReset' });
+parser.add_argument('-f', '--fullreset', { type: 'string', help: 'Perform a complete reset [choices: "true", "false"]' });
 parser.add_argument('-n', '--noreset', { type: 'string', help: 'noReset' });
 parser.add_argument('-s', '--spec', { type: 'string', help: 'run only a certain spec file - overrides specs piped from stdin [array]' });
 parser.add_argument('-su', '--suite', { type: 'string', help: 'overwrites the specs attribute and runs the defined suite [array]' });
