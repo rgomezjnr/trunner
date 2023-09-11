@@ -63,9 +63,9 @@ optional arguments:
   -l LOGLEVEL, --logLevel LOGLEVEL
                         level of logging verbosity [choices: "trace", "debug", "info", "warn", "error", "silent"]
   -i, --incognito       incognito mode
-  -f FULLRESET, --fullreset FULLRESET
+  -f FULLRESET, --fullReset FULLRESET
                         Perform a complete reset [choices: "true", "false"]
-  -n NORESET, --noreset NORESET
+  -n NORESET, --noReset NORESET
                         Don't reset app state before this session [choices: "true", "false"]
   -s SPEC, --spec SPEC  run only a certain spec file - overrides specs piped from stdin [array]
   -su SUITE, --suite SUITE
@@ -96,7 +96,7 @@ run all tests defined in spec section of `wdio.conf.ts` with existing capabiliti
 
 run test 'test.e2e.ts'
 
-`trunner --fullreset true --app test.ipa --spec test/specs/test.e2e.ts`
+`trunner --fullReset true --app test.ipa --spec test/specs/test.e2e.ts`
 
 clean install and reset the app under test 'test.ipa' on to the test device, run test 'test.e2e.ts'
 
